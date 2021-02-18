@@ -1,0 +1,36 @@
+#+TITLE: Starting point for a great application
+
+* How to run
+
+~mvn spring-boot:run~
+
+Profile ~local-dev~ will be used. If you want to change this, please replace ~local-dev~ in the section of ~pom.xml~
+file shown below.
+
+#+begin_src xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <profiles>
+                    <profile>local-dev</profile> <!-- Change this -->
+                </profiles>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+#+end_src
+
+
+* Things to modify
+
+** File ~src/main/resources/db/migration~
+
+Put your [[https://flywaydb.org/][Flyway]] scripts there.
+
+** File ~src/main/resources/scripts~
+
+Replace ~MY_NEW_SCHEMA~ with the name of your schema.
+

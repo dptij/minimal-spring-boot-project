@@ -1,0 +1,38 @@
+server:
+  port: 8092
+
+spring:
+  servlet:
+    session:
+      timeout: 12h
+  autoconfigure:
+    exclude = org.keycloak.adapters.springboot.KeycloakAutoConfiguration
+  flyway:
+    enabled: true
+
+  mvc:
+    servlet:
+      path: /api/v1
+
+  datasource:
+    url: jdbc:h2:mem:local-dev-db;INIT=RUNSCRIPT FROM 'classpath:scripts/init_local.sql';DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+
+  jpa:
+    show-sql: false
+
+  # Enabling H2 Console
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+options:
+  sequence:
+    contractnumber:
+      query: 'select CONTRACT_NUMBER_SEQ.nextval from dual'
+
+security.basic.enabled: false
+management.security.enabled: false

@@ -1,0 +1,40 @@
+server:
+  port: 5055
+
+spring:
+  servlet:
+    session:
+      timeout: 12h
+
+  flyway:
+    enabled: true
+
+  mvc:
+    servlet:
+      path: /api/v1
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+options:
+  sequence:
+    contractnumber:
+      query: "SELECT nextval('CONTRACT_NUMBER_SEQ')"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+
+keycloak:
+  auth-server-url: ${KEYCLOAK_SERVER_URL}
+  realm: Google-Auth
+  resource: ${KEYCLOAK_RESOURCE}
+  bearer-only: true
+  ssl-required: none
+  credentials:
+    secret: f2ae17ac-10ee-42fa-845b-2746739a4452
