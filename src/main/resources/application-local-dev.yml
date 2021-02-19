@@ -5,8 +5,6 @@ spring:
   servlet:
     session:
       timeout: 12h
-  autoconfigure:
-    exclude = org.keycloak.adapters.springboot.KeycloakAutoConfiguration
   flyway:
     enabled: true
 
@@ -34,5 +32,5 @@ options:
     contractnumber:
       query: 'select CONTRACT_NUMBER_SEQ.nextval from dual'
 
-security.basic.enabled: false
-management.security.enabled: false
+keycloak:
+  enabled: false
